@@ -1,12 +1,13 @@
 import React from "react";
 import PedidosApp from "./components/PedidosApp";
+import { BrowserRouter } from "react-router-dom";
 
 export default () => {
   return (
-    <div>
-      <h1>Hi there!</h1>
-      <hr />
-      <PedidosApp />
-    </div>
+    <BrowserRouter>
+      <div>
+        <PedidosApp />
+      </div>
+    </BrowserRouter>
   );
 };
