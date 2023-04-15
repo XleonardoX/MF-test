@@ -1,13 +1,17 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import PedidosApp from "./components/PedidosApp";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+
+const PedidosLazy = lazy(() => import("./components/PedidosApp"));
 
 export default () => {
   return (
     <BrowserRouter>
-      <div>
-        <PedidosApp />
-      </div>
+      <Suspense fallback={<div>...Loading</div>}>
+        <Switch>
+          <Route path="/pedidos" component={PedidosLazy} />
+        </Switch>
+      </Suspense>
     </BrowserRouter>
   );
 };
