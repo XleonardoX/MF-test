@@ -1,6 +1,5 @@
 import React, { lazy, Suspense, useEffect, useState } from "react";
-import PedidosApp from "./components/PedidosApp";
-import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Switch } from "react-router-dom";
 import { createBrowseHistory } from "history";
 
 const history = createBrowseHistory();

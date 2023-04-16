@@ -1,9 +1,8 @@
-import React from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
-import { StylesProvider } from '@material-ui/core/styles';
+import React from "react";
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+import { StylesProvider } from "@material-ui/core/styles";
 
-import Landing from './components/Landing';
-import Pricing from './components/Pricing';
+import OrderList from "./components/OrderList";
 
 export default () => {
   return (
@@ -11,8 +10,7 @@ export default () => {
       <StylesProvider>
         <BrowserRouter>
           <Switch>
-            <Route exact path="/pricing" component={Pricing} />
-            <Route path="/" component={Landing} />
+            <Route exact path="/pedidos" component={OrderList} />
           </Switch>
         </BrowserRouter>
       </StylesProvider>
