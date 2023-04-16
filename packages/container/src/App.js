@@ -1,23 +1,31 @@
-import React, { lazy, Suspense, useState } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import PedidosApp from "./components/PedidosApp";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Router, Route, Switch, Redirect } from "react-router-dom";
+import { createBrowseHistory } from "history";
+
+const history = createBrowseHistory();
 
 const PedidosLazy = lazy(() => import("./components/PedidosApp"));
 
 export default () => {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
 
+  useEffect(() => {
+    if (!isAuthenticated) {
+      history.push("/");
+    }
+  }, [isAuthenticated]);
+
   return (
-    <BrowserRouter>
-      {isAuthenticated && (
-        <Suspense fallback={<div>...Loading</div>}>
-          <Switch>
-            <Route path="/pedidos">
-              <PedidosLazy setIsAuthenticated={setIsAuthenticated} />
-            </Route>
-          </Switch>
-        </Suspense>
-      )}
-    </BrowserRouter>
+    <Router>
+      <Suspense fallback={<div>...Loading</div>}>
+        <Switch>
+          <Route path="/pedidos">
+            <PedidosLazy setIsAuthenticated={setIsAuthenticated} />
+          </Route>
+          <Route path="/" component={<></>} />
+        </Switch>
+      </Suspense>
+    </Router>
   );
 };
