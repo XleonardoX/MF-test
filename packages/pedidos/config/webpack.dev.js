@@ -13,6 +13,7 @@ const devConfig = {
     port: 8081,
     historyApiFallback: true,
   },
+  headers: { "Access-Control-Allow-Origin": "*" },
   plugins: [
     new ModuleFederationPlugin({
       name: "pedidos",
